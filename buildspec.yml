@@ -1,0 +1,25 @@
+version: 0.2
+batch:
+  fast-fail: false
+  build-matrix:
+    static:
+      ignore-failure: false
+      env:
+        type: LINUX_CONTAINER
+        compute-type: BUILD_GENERAL1_MEDIUM
+    dynamic:
+      env:
+        variables:
+          BUILD_WORKER_ID:
+            - "1"
+            - "2"
+            - "3"
+phases:
+  build:
+    commands:
+      - echo "This is a batch build!"
+
+artifacts:
+  files:
+    - "**/*"
+  name: "Production-Deployment-us-east-1-Build"
